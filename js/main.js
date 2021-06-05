@@ -75,7 +75,7 @@
         $('#contact_form').on('submit', function (e) {
             if (!e.isDefaultPrevented()) {
                 var url = "contact_form/contact_form.php";
-
+                console.log($(this).serialize());
                 $.ajax({
                     type: "POST",
                     url: url,
