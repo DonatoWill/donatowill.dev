@@ -29,7 +29,6 @@
 
         }
     }
-    // /Portfolio subpage filters
 
 
     // Hide Mobile menu
@@ -57,9 +56,7 @@
                 $(this).perfectScrollbar();
             });
         } else {
-            // $('.animated-section, .single-page-content').each(function() {
-            //     $(this).perfectScrollbar('destroy');
-            // });
+
             $('.animated-section, .single-page-content').each(function () {
                 $(this).perfectScrollbar();
             });
@@ -67,35 +64,6 @@
     }
     // /Custom scroll
 
-    // Contact form validator
-    $(function () {
-
-        $('#contact_form').validator();
-
-        $('#contact_form').on('submit', function (e) {
-            if (!e.isDefaultPrevented()) {
-                var url = "contact_form/contact_form.php";
-                console.log($(this).serialize());
-                $.ajax({
-                    type: "POST",
-                    url: url,
-                    data: $(this).serialize(),
-                    success: function (data) {
-                        var messageAlert = 'alert-' + data.type;
-                        var messageText = data.message;
-
-                        var alertBox = '<div class="alert ' + messageAlert + ' alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' + messageText + '</div>';
-                        if (messageAlert && messageText) {
-                            $('#contact_form').find('.messages').html(alertBox);
-                            $('#contact_form')[0].reset();
-                        }
-                    }
-                });
-                return false;
-            }
-        });
-    });
-    // /Contact form validator
 
     //On Window load & Resize
     $(window)
@@ -185,72 +153,6 @@
 
         customScroll();
 
-        // Text rotation
-        $('.text-rotation').owlCarousel({
-            loop: true,
-            dots: false,
-            nav: false,
-            margin: 0,
-            items: 1,
-            autoplay: true,
-            autoplayHoverPause: false,
-            autoplayTimeout: 3800,
-            animateOut: 'animated-section-scaleDown',
-            animateIn: 'animated-section-scaleUp',
-
-        });
-
-        // Testimonials Slider
-        $(".testimonials.owl-carousel").owlCarousel({
-            nav: true, // Show next/prev buttons.
-            items: 3, // The number of items you want to see on the screen.
-            loop: false, // Infinity loop. Duplicate last and first items to get loop illusion.
-            navText: false,
-            autoHeight: true,
-            margin: 25,
-            responsive: {
-                // breakpoint from 0 up
-                0: {
-                    items: 1,
-                },
-                // breakpoint from 480 up
-                480: {
-                    items: 1,
-                },
-                // breakpoint from 768 up
-                768: {
-                    items: 2,
-                },
-                1200: {
-                    items: 2,
-                }
-            }
-        });
-
-        // Clients Slider
-        $(".clients.owl-carousel").imagesLoaded().owlCarousel({
-            nav: true, // Show next/prev buttons.
-            items: 2, // The number of items you want to see on the screen.
-            loop: false, // Infinity loop. Duplicate last and first items to get loop illusion.
-            navText: false,
-            margin: 10,
-            autoHeight: true,
-            responsive: {
-                // breakpoint from 0 up
-                0: {
-                    items: 2,
-                },
-                // breakpoint from 768 up
-                768: {
-                    items: 4,
-                },
-                1200: {
-                    items: 5,
-                }
-            }
-        });
-
-
         //Form Controls
         $('.form-control')
             .val('')
@@ -269,11 +171,8 @@
             type: 'image',
             removalDelay: 300,
 
-            // Class that is added to popup wrapper and background
-            // make it unique to apply your CSS animations just to this exact popup
             mainClass: 'mfp-fade',
             image: {
-                // options for image content type
                 titleSrc: 'title',
                 gallery: {
                     enabled: true
@@ -285,18 +184,13 @@
                     '<div class="mfp-close"></div>' +
                     '<iframe class="mfp-iframe" frameborder="0" allowfullscreen></iframe>' +
                     '<div class="mfp-title mfp-bottom-iframe-title"></div>' +
-                    '</div>', // HTML markup of popup, `mfp-close` will be replaced by the close button
+                    '</div>',
 
                 patterns: {
                     youtube: {
-                        index: 'youtube.com/', // String that detects type of video (in this case YouTube). Simply via url.indexOf(index).
-
-                        id: null, // String that splits URL in a two parts, second part should be %id%
-                        // Or null - full URL will be returned
-                        // Or a function that should return %id%, for example:
-                        // id: function(url) { return 'parsed id'; }
-
-                        src: '%id%?autoplay=1' // URL that will be set as a source for iframe.
+                        index: 'youtube.com/', 
+                        id: null, 
+                        src: '%id%?autoplay=1'
                     },
                     vimeo: {
                         index: 'vimeo.com/',
@@ -309,23 +203,16 @@
                     }
                 },
 
-                srcAction: 'iframe_src', // Templating object key. First part defines CSS selector, second attribute. "iframe_src" means: find "iframe" and set attribute "src".
-            },
+                srcAction: 'iframe_src', 
 
-            callbacks: {
+                callbacks: {
                 markupParse: function (template, values, item) {
                     values.title = item.el.attr('title');
                 }
+            }
             },
         });
 
-        //Google Maps
-        $("#map").googleMap({
-            zoom: 16 // Google Map ZOOM. You can change this value
-        });
-        $("#map").addMarker({
-            address: "S601 Townsend Street, San Francisco, California, USA", // Your Address. Change it
-        });
     });
 
 })(jQuery);
