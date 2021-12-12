@@ -148,7 +148,7 @@
         // Blog grid init
         var $container = $(".blog-masonry");
         $container.imagesLoaded(function () {
-            $container.masonry();
+            // $container.masonry();
         });
 
         customScroll();
