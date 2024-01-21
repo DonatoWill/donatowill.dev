@@ -53,12 +53,12 @@
         var windowWidth = $(window).width();
         if (windowWidth > 1024) {
             $('.animated-section, .single-page-content').each(function () {
-                $(this).perfectScrollbar();
+                //$(this).perfectScrollbar();
             });
         } else {
 
             $('.animated-section, .single-page-content').each(function () {
-                $(this).perfectScrollbar();
+                //$(this).perfectScrollbar();
             });
         }
     }
